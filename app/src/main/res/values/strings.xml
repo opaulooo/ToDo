@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ChitChat</string>
+    <string name="hint_input_message">Type a message...</string>
+    <string name="txt_done">Done</string>
+    <string name="txt_btn">Create</string>
+    <string name="txt_input">Insert a Task</string>
+    <string name="txt_isUrgent">Is it Urgent?</string>
+</resources>
