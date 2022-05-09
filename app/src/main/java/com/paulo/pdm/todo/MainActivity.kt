@@ -10,18 +10,19 @@ import com.paulo.pdm.todo.model.ToDo
 import com.paulo.pdm.todo.ui.list.ToDoAdapter
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var txtToDo: EditText
+    private lateinit var txt_ToDo: EditText
     private lateinit var toDo: ArrayList<ToDo>
-    private lateinit var rv_toDo: RecyclerView
+    private lateinit var rv_toDoList: RecyclerView
     private lateinit var toDoAdapter: ToDoAdapter
     private lateinit var switch_isUrgent: Switch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        this.txtToDo = findViewById(R.id.txt_ToDo)
-        this.rv_toDo = findViewById(R.id.txt_ToDo)
-        this.switch_isUrgent = findViewById(R.id.txt_ToDo)
+        this.txt_ToDo = findViewById(R.id.txt_ToDo)
+        this.rv_toDoList = findViewById(R.id.rv_toDoList)
+        this.switch_isUrgent = findViewById(R.id.switch_isUrgent)
 
 
         if(savedInstanceState == null){
@@ -35,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             todo.isDone = boolean
         }
 
-        this.rv_toDo.layoutManager = LinearLayoutManager(this)
-        this.rv_toDo.adapter = this.toDoAdapter
+        this.rv_toDoList.layoutManager = LinearLayoutManager(this)
+        this.rv_toDoList.adapter = this.toDoAdapter
 
 
     }
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickAction(view: View){
-        val toDo = this.txtToDo.text.toString()
+        val toDo = this.txt_ToDo.text.toString()
         if (toDo.isNotBlank()) {
             val rv_toDo = ToDo(
                 toDo,
@@ -56,9 +57,9 @@ class MainActivity : AppCompatActivity() {
             )
             this.toDo.add(rv_toDo)
             this.toDoAdapter.notifyItemInserted(this.toDo.size-1)
-            this.rv_toDo.scrollToPosition(this.toDo.size-1)
+            this.rv_toDoList.scrollToPosition(this.toDo.size-1)
             this.switch_isUrgent.isChecked = false
-            this.txtToDo.text.clear()
+            this.txt_ToDo.text.clear()
         }
     }
 

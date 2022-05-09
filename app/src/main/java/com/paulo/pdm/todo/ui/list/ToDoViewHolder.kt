@@ -14,20 +14,20 @@ class ToDoViewHolder(itens: View, private val adapter: ToDoAdapter): RecyclerVie
 
     private val isUrgent: FrameLayout = itens.findViewById(R.id.left_color)
     private val txt_description: TextView = itens.findViewById(R.id.txt_description)
-    private val chx_done: CheckBox = itens.findViewById(R.id.cbx_isDone)
+    private val chx_isDone: CheckBox = itens.findViewById(R.id.cbx_isDone)
     private lateinit var currentToDo: ToDo
     init {
         itemView.setOnClickListener {
-            this.adapter.getOnClickToDoListener()?.onClickTask(this.currentToDo);
+            this.adapter.getOnClickToDoListener()?.onClickToDo(this.currentToDo);
         }
-        this.chx_done.setOnCheckedChangeListener { _, b ->
+        this.chx_isDone.setOnCheckedChangeListener { _, b ->
             this.adapter.getOnCheckBoxClickToDoListener()?.onCheckBoxClickToDo(this.currentToDo, b)
         }
     }
-    fun bind(task: ToDo){
-        this.currentToDo = task
+    fun bind(todo: ToDo){
+        this.currentToDo = todo
         this.txt_description.text = this.currentToDo.description
-        this.chx_done.isChecked = this.currentToDo.isDone
+        this.chx_isDone.isChecked = this.currentToDo.isDone
         if (this.currentToDo.isurgent){
             this.isUrgent.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.red))
         } else {

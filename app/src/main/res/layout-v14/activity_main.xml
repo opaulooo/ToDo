@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txt_view2"
-        app:layout_constraintTop_toBottomOf="@+id/ToDo_list"
+        app:layout_constraintTop_toBottomOf="@+id/rv_toDoList"
         app:layout_constraintVertical_bias="1.0"
         tools:targetApi="ice_cream_sandwich" />
 
@@ -63,8 +63,9 @@
         android:text="@string/txt_isUrgent"
         app:layout_constraintBottom_toTopOf="@+id/txt_ToDo"
         app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ToDo_list"
+        android:id="@+id/rv_toDoList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
