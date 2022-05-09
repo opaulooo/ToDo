@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD:app/src/main/res/layout/todo.xml
     xmlns:tools="http://schemas.android.com/tools"
+=======
+>>>>>>> ce3b5c2d8fa90f302787cd030e5b1e0ee6a537f4:app/src/main/res/layout/ToDo.xml
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:ignore="MissingDefaultResource">

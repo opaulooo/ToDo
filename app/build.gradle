@@ -2,7 +2,18 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+<<<<<<< HEAD
 
+=======
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.1'
+    }
+}
+>>>>>>> ce3b5c2d8fa90f302787cd030e5b1e0ee6a537f4
 android {
     compileSdk 32
 
