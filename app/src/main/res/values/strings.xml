@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChitChat</string>
+    <string name="app_name">ToDo</string>
     <string name="hint_input_message">Type a message...</string>
     <string name="txt_done">Done</string>
     <string name="txt_btn">Create</string>

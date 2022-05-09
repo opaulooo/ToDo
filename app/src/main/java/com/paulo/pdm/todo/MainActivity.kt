@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.paulo.pdm.todo.model.ToDo
 import com.paulo.pdm.todo.ui.list.ToDoAdapter
@@ -28,6 +29,16 @@ class MainActivity : AppCompatActivity() {
         } else if(savedInstanceState.containsKey("RECOVER_TASKS")){
             this.toDo = savedInstanceState.getParcelableArrayList<ToDo>("RECOVER_TASKS") as ArrayList<ToDo>
         }
+        this.toDoAdapter = ToDoAdapter(this.toDo)
+
+        this.toDoAdapter.setOnCheckBoxClickToDoListener  { todo, boolean ->
+            todo.isDone = boolean
+        }
+
+        this.rv_toDo.layoutManager = LinearLayoutManager(this)
+        this.rv_toDo.adapter = this.toDoAdapter
+
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -44,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                 false
             )
             this.toDo.add(rv_toDo)
+            this.toDoAdapter.notifyItemInserted(this.toDo.size-1)
             this.rv_toDo.scrollToPosition(this.toDo.size-1)
             this.switch_isUrgent.isChecked = false
             this.txtToDo.text.clear()

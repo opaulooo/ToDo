@@ -6,7 +6,7 @@ import android.os.Parcelable
 class ToDo(
     val description: String,
     val isurgent: Boolean,
-    val isDone: Boolean
+    var isDone: Boolean
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
