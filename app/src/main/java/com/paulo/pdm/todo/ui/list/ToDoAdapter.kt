@@ -13,32 +13,15 @@ class ToDoAdapter (private var toDo: ArrayList<ToDo>): RecyclerView.Adapter<ToDo
 
 
     fun interface OnClickToDoListener {
-<<<<<<< HEAD
-        fun onClickToDo(todo: ToDo)
-    }
-
-    fun interface OnCheckBoxClickToDoListener{
-        fun onCheckBoxClickToDo(todo: ToDo, b: Boolean)
-=======
         fun onClickTask(task: ToDo)
     }
 
     fun interface OnCheckBoxClickToDoListener{
         fun onCheckBoxClickToDo(task: ToDo, b: Boolean)
->>>>>>> ce3b5c2d8fa90f302787cd030e5b1e0ee6a537f4
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-<<<<<<< HEAD
-        val layoutRes = R.layout.todo
-        val itens = layoutInflater.inflate(layoutRes, parent, false)
-        return ToDoViewHolder(itens, this)
-    }
-
-    override fun onBindViewHolder(holder: ToDoViewHolder, i: Int) {
-        holder.bind(this.toDo[i])
-=======
         val layoutRes = R.layout.ToDo
         val itemView = layoutInflater.inflate(layoutRes, parent, false)
         return ToDoViewHolder(itemView, this)
@@ -46,7 +29,6 @@ class ToDoAdapter (private var toDo: ArrayList<ToDo>): RecyclerView.Adapter<ToDo
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         holder.bind(this.toDo[position])
->>>>>>> ce3b5c2d8fa90f302787cd030e5b1e0ee6a537f4
     }
 
     override fun getItemCount(): Int {
@@ -62,13 +44,6 @@ class ToDoAdapter (private var toDo: ArrayList<ToDo>): RecyclerView.Adapter<ToDo
     }
 
 
-<<<<<<< HEAD
-    fun setOnCheckBoxClickToDoListener(chxListener: OnCheckBoxClickToDoListener?) {
-        this.cbx_listener = chxListener
-    }
-
-=======
->>>>>>> ce3b5c2d8fa90f302787cd030e5b1e0ee6a537f4
     fun getOnCheckBoxClickToDoListener(): OnCheckBoxClickToDoListener? {
         return this.cbx_listener
     }
