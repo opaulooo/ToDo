@@ -2,12 +2,10 @@ package com.paulo.pdm.todo
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.paulo.pdm.todo.model.ToDo
-import com.paulo.pdm.todo.ui.list.ToDoAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var txt_ToDo: EditText
@@ -25,14 +23,15 @@ class MainActivity : AppCompatActivity() {
         this.switch_isUrgent = findViewById(R.id.switch_isUrgent)
 
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             this.toDo = ArrayList()
-        } else if(savedInstanceState.containsKey("RECOVER_TASKS")){
-            this.toDo = savedInstanceState.getParcelableArrayList<ToDo>("RECOVER_TASKS") as ArrayList<ToDo>
+        } else if (savedInstanceState.containsKey("RECOVER_TASKS")) {
+            this.toDo =
+                savedInstanceState.getParcelableArrayList<ToDo>("RECOVER_TASKS") as ArrayList<ToDo>
         }
         this.toDoAdapter = ToDoAdapter(this.toDo)
 
-        this.toDoAdapter.setOnCheckBoxClickToDoListener  { todo, boolean ->
+        this.toDoAdapter.setOnCheckBoxClickToDoListener{todo, boolean ->
             todo.isDone = boolean
         }
 
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         outState.putParcelableArrayList("RECOVER_TASKS", this.toDo)
     }
 
-    fun onClickAction(view: View){
+    fun onClickAction(view: View) {
         val toDo = this.txt_ToDo.text.toString()
         if (toDo.isNotBlank()) {
             val rv_toDo = ToDo(
@@ -56,8 +55,8 @@ class MainActivity : AppCompatActivity() {
                 false
             )
             this.toDo.add(rv_toDo)
-            this.toDoAdapter.notifyItemInserted(this.toDo.size-1)
-            this.rv_toDoList.scrollToPosition(this.toDo.size-1)
+            this.toDoAdapter.notifyItemInserted(this.toDo.size - 1)
+            this.rv_toDoList.scrollToPosition(this.toDo.size - 1)
             this.switch_isUrgent.isChecked = false
             this.txt_ToDo.text.clear()
         }
