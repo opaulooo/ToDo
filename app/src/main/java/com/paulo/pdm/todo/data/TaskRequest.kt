@@ -17,8 +17,10 @@ class TaskRequest(context: Context) {
 
     companion object {
         private val URL = "http://10.0.2.2:8000"
-        private val GET_TASKS = "/tasks"
-        private val POST_TASKS = "/tasks/new"
+        private val GET = "/tasks"
+        private val POST = "/tasks/new"
+        private val DELETE = "/tasks/del"
+        private val UPDATE = "/tasks/done"
     }
 
     fun startTasksRequest() {
@@ -33,9 +35,7 @@ class TaskRequest(context: Context) {
 
     private fun tasksRequest() {
         val jsonRequest = JsonArrayRequest(
-            Request.Method.GET,
-            URL + GET_TASKS,
-            null,
+            Request.Method.GET, URL + GET, null,
             { response ->
                 val task = JSONArrayToTaskList(response)
                 TasksSingleton.updateTaskList(task)
@@ -62,11 +62,41 @@ class TaskRequest(context: Context) {
         return taskList
     }
 
+    fun deleteTask(task: Task) {
+        val jsonArrayRequest = JsonObjectRequest(
+            Request.Method.DELETE, URL + DELETE + '/' + task.id,
+            this.toJSON(task),
+            { response ->
+                Log.d("RequestResponse", response.toString())
+                this.tasksRequest()
+            },
+            { volleyError ->
+                Log.e("RequestTaskError", "Connection error. $volleyError")
+            }
+        )
+
+        this.queue.add(jsonArrayRequest)
+    }
+
+    fun updateTask(task: Task, state: String) {
+        val jsonArrayRequest = JsonObjectRequest(
+            Request.Method.PUT, URL + UPDATE + '/' + state + '/' + task.id,
+            this.toJSON(task),
+            { response ->
+                Log.d("RequestResponse", response.toString())
+                this.tasksRequest()
+            },
+            { volleyError ->
+                Log.e("RequestTaskError", "Connection error. $volleyError")
+            }
+        )
+
+        this.queue.add(jsonArrayRequest)
+    }
 
     fun createTask(task: Task) {
         val jsonArrayRequest = JsonObjectRequest(
-            Request.Method.POST,
-            URL + POST_TASKS,
+            Request.Method.POST, URL + POST,
             this.toJSON(task),
             { response ->
                 Log.d("RequestResponse", response.toString())

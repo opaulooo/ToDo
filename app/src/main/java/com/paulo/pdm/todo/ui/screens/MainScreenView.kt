@@ -42,19 +42,19 @@ fun MainScreenView(taskRequest: TaskRequest) {
             bottom(taskRequest)
         }
     ) { innerPadding ->
-        taskList(innerPadding = innerPadding)
+        taskList(innerPadding = innerPadding, taskRequest)
     }
 }
 
 
 @Composable
-fun taskList(innerPadding: PaddingValues) {
+fun taskList(innerPadding: PaddingValues, taskRequest: TaskRequest) {
 
     Box(modifier = Modifier.padding(innerPadding)) {
         Column {
             LazyColumn {
                 items(TasksSingleton.getTasks()) { task ->
-                    TaskItemView(task = task)
+                    TaskItemView(task = task, taskRequest = taskRequest)
                 }
             }
         }
