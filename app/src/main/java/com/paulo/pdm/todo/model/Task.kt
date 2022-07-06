@@ -1,7 +1,8 @@
 package com.paulo.pdm.todo.model
 
 class Task (
-    val isUrgent: Boolean,
+    val id: Int? = 0,
+    var is_urgent: Boolean,
     val description: String,
-    var isDone: Boolean = false
+    var is_done: Boolean = false
 )
