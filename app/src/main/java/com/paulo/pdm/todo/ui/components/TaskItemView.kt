@@ -4,10 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,7 +25,10 @@ import com.paulo.pdm.todo.ui.theme.ToDo
 
 @Composable
 fun TaskItemView(task: Task, taskRequest: TaskRequest?) {
-    var checked = remember { mutableStateOf(task.is_done) }
+    var checked by remember {
+        mutableStateOf(false)
+    }
+    checked = task.is_done;
     var maxSize = remember { mutableStateOf(1) }
     var visibleState = remember { mutableStateOf(false) }
 
@@ -78,10 +78,15 @@ fun TaskItemView(task: Task, taskRequest: TaskRequest?) {
                     .align(alignment = Alignment.CenterVertically)
             )
             Checkbox(
-                checked = checked.value,
+                checked = checked,
                 onCheckedChange = {
-                    checked.value = !checked.value
-                    task.is_done = checked.value
+                    checked = !checked
+                    task.is_done = checked
+                    if (checked) {
+                        taskRequest?.updateTask(task, "t")
+                    } else {
+                        taskRequest?.updateTask(task, "f")
+                    }
                 },
                 colors = CheckboxDefaults.colors(
                     checkedColor = MaterialTheme.colors.onSecondary,
